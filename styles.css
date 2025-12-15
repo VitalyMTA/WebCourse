@@ -1,10 +1,14 @@
 /* Basic reset */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { height: 100%; width: 100%; }
+html, body { width: 100%; }
+
+@media only screen and (min-width: 751px) {
+  html, body { height: 100%; }
+}
 
 /* Desktop / Mobile toggles (original names preserved) */
 .desktop { display: block; height: 100%; }
-.mobile  { display: none; }
+.mobile  { display: none; height: auto; }
 
 /* Original column widths (kept for compatibility; flex equivalents used below) */
 .col-1  { width: 8.33%;  }
@@ -158,65 +162,58 @@ html, body { height: 100%; width: 100%; }
   .col-12Square {
     display: flex !important;
     flex-direction: column !important;
-    align-items: stretch !important;
-    gap: 10px !important;
+    gap: 5px !important;
     width: 100% !important;
     padding: 10px !important;
-    margin: 0 auto !important;
     border: solid red !important;
     box-sizing: border-box !important;
-    overflow: visible !important;
   }
 
-  /* Neutralize desktop row behavior inside col-12Square so children stack */
+  /* Hide all wrapper containers - let children be direct flex children */
   .col-12Square .row,
   .col-12Square .square2,
   .col-12Square .square33,
   .col-12Square .bottomSquare {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 10px !important;
-    width: 100% !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    border: none !important; /* avoid double borders from wrappers */
-    box-sizing: border-box !important;
+    display: contents !important;
   }
 
-  /* Make every visual box inside col-12Square uniform, full-width and stacked */
+  /* Style all the actual boxes */
   .col-12Square .square3,
   .col-12Square .inner50,
   .col-12Square .inner66,
   .col-12Square .bottomSquare1 {
-    display: block !important;
-    width: 100% !important;
-    height: 70px !important;         /* uniform height */
-    margin: 0 !important;
-    padding: 0 !important;
-    border: solid red !important;    /* ensure visible red border */
-    box-sizing: border-box !important;
-    background: transparent !important;
-  }
-
-  /* Ensure stacked children inside .square33 are also uniform boxes */
-  .col-12Square .square33 .inner50 {
-    display: block !important;
     width: 100% !important;
     height: 70px !important;
-    margin: 0 !important;
     border: solid red !important;
     box-sizing: border-box !important;
   }
 
-  /* Mobile-only wrapper (the .mobile block) uses the same visual rules */
+  /* Mobile-only wrapper (the .mobile block) - flex with 5px gap */
   .mobile .square {
-    display: block !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 5px !important;
     width: 100% !important;
+    height: auto !important;
     padding: 10px !important;
     border: solid red !important;
     box-sizing: border-box !important;
   }
+
+  /* Style all the boxes inside mobile */
+  .mobile .square3,
+  .mobile .inner50,
+  .mobile .inner66,
+  .mobile .bottomSquare1 {
+    width: 100% !important;
+    height: 70px !important;
+    flex: 0 0 70px !important;
+    flex-shrink: 0 !important;
+    border: solid red !important;
+    box-sizing: border-box !important;
+  }
 }
+
 
 
 
