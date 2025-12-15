@@ -1,0 +1,229 @@
+/* Basic reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; width: 100%; }
+
+/* Desktop / Mobile toggles (original names preserved) */
+.desktop { display: block; height: 100%; }
+.mobile  { display: none; }
+
+/* Original column widths (kept for compatibility; flex equivalents used below) */
+.col-1  { width: 8.33%;  }
+.col-2  { width: 16.66%; }
+.col-3  { width: 25%;    }
+.col-4  { width: 33.33%; }
+.col-5  { width: 41.66%; }
+.col-6  { width: 50%;    }
+.col-7  { width: 58.33%; }
+.col-8  { width: 66.66%; }
+.col-9  { width: 75%;    }
+.col-10 { width: 83.33%; }
+.col-11 { width: 91.66%; }
+.col-12 { width: 100%;   }
+
+/* ---------- Flex layout using original class names ---------- */
+
+/* Top-level wrapper (original .square) becomes the main flex container */
+.square.main-wrapper {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100%;
+  gap: 0;
+  align-items: stretch;
+  overflow: hidden;
+  border: solid red;      /* keep wrapper visible on desktop */
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+/* Left column (original col-2) */
+.col-2Square {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 16.66%;       /* matches .col-2 width */
+  max-width: 16.66%;
+  border: solid red;
+  min-width: 0;
+}
+
+/* Right column (original col-10) - holds the three rows */
+.col-12Square {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;         /* fills remaining width */
+  gap: 5px;
+  padding: 5px;
+  border: solid red;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* Each of the three rows (original mainSquare33) is 33% of the right column height */
+.mainSquare33.row {
+  display: flex;
+  flex-direction: row;
+  height: calc((100% - 10px) / 3); /* account for two 5px gaps */
+  gap: 5px;
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+/* ---------- Row 1: .square2 contains four .square3 boxes ---------- */
+.square2 {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  width: 100%;
+  align-items: stretch;
+  box-sizing: border-box;
+}
+.square3 {
+  flex: 1 1 0;
+  min-width: 0;
+  border: solid red;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- Row 2: left stacked (.square33 / .inner50) and right (.square66 / .inner66) ---------- */
+.square33 {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 0 0 50%;         /* left half of the row */
+  box-sizing: border-box;
+  padding: 5px;
+}
+.inner50 {
+  flex: 1 1 0;
+  border: solid red;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.square66 {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 50%;         /* right half of the row */
+  box-sizing: border-box;
+  padding: 5px;
+}
+.inner66 {
+  border: solid red;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- Row 3: bottomSquare contains two bottomSquare1 boxes (70% / 30%) ---------- */
+.bottomSquare {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  width: 100%;
+  align-items: stretch;
+  box-sizing: border-box;
+  padding: 5px;
+}
+.bottomSquare1 {
+  border: solid red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+.bottomSquare1:nth-child(1) { flex: 0 0 calc(58.33% - 2.5px); }
+.bottomSquare1:nth-child(2) { flex: 0 0 calc(41.66% - 2.5px); }
+
+/* ---------- Utility ---------- */
+.row > * { min-height: 0; }
+
+/* ---------- Mobile: show only the boxes inside the original col-12 area ---------- */
+@media only screen and (max-width: 750px) {
+
+  /* Hide desktop wrapper toggle */
+  .desktop { display: none; }
+  .mobile  { display: block; }
+
+  /* Hide left column on mobile (user requested only col-12 content) */
+  .col-2Square { display: none !important; }
+
+  /* Make the right column the visible wrapper and stack its children */
+  .col-12Square {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+    width: 100% !important;
+    padding: 10px !important;
+    margin: 0 auto !important;
+    border: solid red !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+  }
+
+  /* Neutralize desktop row behavior inside col-12Square so children stack */
+  .col-12Square .row,
+  .col-12Square .square2,
+  .col-12Square .square33,
+  .col-12Square .bottomSquare {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important; /* avoid double borders from wrappers */
+    box-sizing: border-box !important;
+  }
+
+  /* Make every visual box inside col-12Square uniform, full-width and stacked */
+  .col-12Square .square3,
+  .col-12Square .inner50,
+  .col-12Square .inner66,
+  .col-12Square .bottomSquare1 {
+    display: block !important;
+    width: 100% !important;
+    height: 70px !important;         /* uniform height */
+    margin: 0 !important;
+    padding: 0 !important;
+    border: solid red !important;    /* ensure visible red border */
+    box-sizing: border-box !important;
+    background: transparent !important;
+  }
+
+  /* Ensure stacked children inside .square33 are also uniform boxes */
+  .col-12Square .square33 .inner50 {
+    display: block !important;
+    width: 100% !important;
+    height: 70px !important;
+    margin: 0 !important;
+    border: solid red !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Mobile-only wrapper (the .mobile block) uses the same visual rules */
+  .mobile .square {
+    display: block !important;
+    width: 100% !important;
+    padding: 10px !important;
+    border: solid red !important;
+    box-sizing: border-box !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
