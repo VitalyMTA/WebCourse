@@ -1,0 +1,38 @@
+/* Matala_2_bootstrap.css
+   Styles supporting Matala_2_bootstrap.html to match the original Matala_2.html + Matala_2CSS.css view.
+*/
+
+html, body { height: 100%; margin: 0; }
+.full-height { height: 100vh; }
+.left-gutter { background: transparent; }
+.main-column { padding: 6px; display:flex; flex-direction:column; }
+.main-row { flex:1; display:flex; }
+
+/* visual elements (red border like original) */
+.visual-box { border: 2px solid red; background: transparent; box-sizing: border-box; }
+
+/* First row: four equal boxes horizontally */
+.first-row .four-boxes { display:flex; gap:10px; width:100%; align-items:stretch; }
+.first-row .four-boxes > div { flex:1; }
+
+/* Second row: left column split into two stacked halves, right big box */
+.second-row .second-left { width: 33.333%; padding-right: 6px; }
+.second-row .second-right { width: 66.666%; padding-left: 6px; }
+.second-row .left-stack { display:flex; flex-direction:column; gap:10px; }
+.second-row .left-stack > div { flex:1; }
+
+/* Third row: bottom two boxes with approx 58.33% / 41.66% widths */
+.third-row { display:flex; width:100%; }
+.third-row .left-bottom { width:58.33%; margin-right:10px; }
+.third-row .right-bottom { width:41.66%; }
+
+/* Mobile stacked view */
+/* use Bootstrap responsive utilities in markup; these are kept for compatibility */
+.mobile-only { display:none; }
+.desktop-only { display:block; }
+
+@media (max-width: 750px) {
+  .desktop-only { display: none !important; }
+  .mobile-only { display: block !important; }
+  .mobile-stack .visual-box { width: 90%; height: 70px; margin: 10px auto; }
+}
