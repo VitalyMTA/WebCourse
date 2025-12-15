@@ -1,0 +1,185 @@
+* {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Main parent container */
+        .main-container {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            float: left;
+            width: 8.333%;
+            height: 100%;
+            border: 5px solid white;
+        }
+
+        .sidebar-inner {
+            width: 100%;
+            height: 100%;
+            border: 2px solid red;
+        }
+
+        /* Content area */
+        .content-area {
+            float: left;
+            width: 91.667%;
+            height: 100%;
+            border: 5px solid white;
+        }
+
+        .content-inner {
+            width: 100%;
+            height: 100%;
+            border: 2px solid red;
+        }
+
+        /* Top row - 4 equal divs, 25% width each, 40% height */
+        .top-row {
+            float: left;
+            width: 25%;
+            height: 40%;
+            border: 5px solid white;
+        }
+
+        .top-row-inner {
+            width: 100%;
+            height: 100%;
+            border: 2px solid red;
+        }
+
+        /* Middle section - 2 divs, 50% width each, 20% height */
+        .middle-left {
+            float: left;
+            width: 50%;
+            height: 20%;
+            border: 5px solid white;
+        }
+
+        .middle-left-inner {
+            width: 100%;
+            height: 100%;
+            border: 2px solid red;
+        }
+
+        .middle-left-wrapper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .middle-left-stacked {
+            width: 100%;
+            height: 50%;
+            border: 5px solid white;
+        }
+
+        .middle-left-stacked-inner {
+            width: 100%;
+            height: 100%;
+            border: 2px solid red;
+        }
+
+        .middle-right {
+            float: left;
+            width: 50%;
+            height: 20%;
+            border: 5px solid white;
+        }
+
+        .middle-right-inner {
+            width: 100%;
+            height: 100%;
+            border: 2px solid red;
+        }
+
+        /* Bottom section - 75% and 25% width, 40% height */
+        .bottom-left {
+            float: left;
+            width: 75%;
+            height: 40%;
+            border: 5px solid white;
+        }
+
+        .bottom-left-inner {
+            width: 100%;
+            height: 100%;
+            border: 2px solid red;
+        }
+
+        .bottom-right {
+            float: left;
+            width: 25%;
+            height: 40%;
+            border: 5px solid white;
+        }
+
+        .bottom-right-inner {
+            width: 100%;
+            height: 100%;
+            border: 2px solid red;
+        }
+
+        /* Mobile responsiveness (under 750px) */
+        @media (max-width: 749px) {
+            .main-container {
+                height: auto;
+                border: 2px solid red;
+                padding: 10px;
+                overflow: hidden;
+            }
+
+            .sidebar, .content-area {
+                float: none;
+                width: 100%;
+                height: auto;
+                border: none;
+                padding: 0;
+                margin-bottom: 10px;
+            }
+
+            .sidebar-inner, .content-inner {
+                border: 2px solid red;
+                height: 150px;
+            }
+
+            .content-inner {
+                border: none;
+                background-color: transparent;
+                height: auto;
+                padding: 0;
+            }
+
+            .top-row, .middle-left, .middle-right, .bottom-left, .bottom-right {
+                float: none;
+                width: 100%;
+                height: auto;
+                border: none;
+                margin-bottom: 10px;
+            }
+
+            .top-row-inner, .middle-left-inner, .middle-right-inner, .bottom-left-inner, .bottom-right-inner {
+                border: 2px solid red;
+                height: 150px;
+            }
+
+            .middle-left-stacked {
+                float: none;
+                width: 100%;
+                height: auto;
+                border: none;
+                margin-bottom: 10px;
+            }
+
+            .middle-left-stacked-inner {
+                border: 2px solid red;
+                height: 150px;
+            }
+        }
