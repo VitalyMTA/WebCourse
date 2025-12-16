@@ -1,4 +1,4 @@
-Hello, this page was created for Assigment number 2.
+Hello, this page was created for Assignment number 2.
 <ul>
 <li>First link is Part A</li>
 <li>Second link is Flex with co pilot</li>
