@@ -1,5 +1,5 @@
 /* HW2-CopilotBootstrap.css
-   Styles supporting HW2-CopilotBootstrap.html to match the original HW2.html + HW2.css view.
+   Styles supporting HW2-CopilotBootstrap.html to match the original HW2-PartA.html + HW2-PartA.css view.
 */
 
 html, body { height: 100%; margin: 0; }
@@ -36,4 +36,5 @@ html, body { height: 100%; margin: 0; }
   .mobile-only { display: block !important; }
   .mobile-stack .visual-box { width: 90%; height: 70px; margin: 10px auto; }
 }
+
 
